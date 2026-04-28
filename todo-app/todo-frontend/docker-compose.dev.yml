@@ -1,0 +1,16 @@
+services:
+  app:
+    image: todo-frontend-dev
+    build:
+      context: . # The context will pick this directory as the "build context"
+      dockerfile: dev.Dockerfile # This will simply tell which dockerfile to read
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+    volumes:
+      - ./src:/usr/src/app/src
+      - ./public:/usr/src/app/public
+      - ./vite.config.js:/usr/src/app/vite.config.js
+      - /usr/src/app/node_modules
+    ports:
+      - 5173:5173
+    container_name: tofo-frontend-dev # This will name the container hello-front-dev
